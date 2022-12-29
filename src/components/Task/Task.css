@@ -1,0 +1,20 @@
+.task_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    row-gap: 30px;
+    column-gap: 20px;
+}
+
+.task_container Box {
+    background-color: #444;
+}
+
+.span_three {
+    columns: span 3;
+}
+
+@media screen and (max-width :768px) {
+    .task_container {
+        justify-content: center;
+    }
+}

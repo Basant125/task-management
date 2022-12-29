@@ -1,0 +1,26 @@
+.toolbar_flex {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+}
+
+.addTask_btn {
+    border-radius: 20px !important;
+    background-color: #EAE7B1 !important;
+    color: #3C6255 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    border: none !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+}
+
+.addTask_btn:hover {
+    opacity: 0.8;
+}
+
+.appbar_heading {
+    font-size: 24px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #EAE7B1;
+}
