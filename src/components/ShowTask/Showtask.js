@@ -65,7 +65,7 @@ const Showtask = ({ show, setShow, data, currentType }) => {
                     <div className="subTask_content">
                         <span>subtask ({todoCheckedState?.subtask?.length})</span>
                         {
-                            todoCheckedState?.subtask?.length > 0 && todoCheckedState?.subtask.map((item, index) => (<div key={index} className="subtask_control">
+                            todoCheckedState?.subtask?.length > 0 ? todoCheckedState?.subtask.map((item, index) => (<div key={index} className="subtask_control">
                                 <label>
                                     <Checkbox checked={Boolean(item.completed)} onChange={(e) => handleCheckTodo(e, item.id)} sx={{
                                         color: "#3C6255",
@@ -75,7 +75,9 @@ const Showtask = ({ show, setShow, data, currentType }) => {
                                     }} />
                                     <span className={item.completed ? 'checked' : 'unchecked'}>{item.subtask}</span>
                                 </label>
-                            </div>))
+                            </div>)) : (<div className="subtask_control">
+                                <span>No subtask here !</span>
+                            </div>)
                         }
                     </div>
                     <Box className="form_control" style={{ marginTop: '10px' }}>

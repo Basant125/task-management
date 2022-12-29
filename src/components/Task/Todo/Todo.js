@@ -5,9 +5,8 @@ import Showtask from "../../ShowTask/Showtask";
 import DeleteIcon from '@mui/icons-material/Delete';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import './Todo.css'
-import { taskDelete } from "../../../redux/reducer";
 
-const Todo = ({ setShow, handleShowSubTask }) => {
+const Todo = ({ setShow, handleShowSubTask, handleDeleteTodo, setDeleteShow }) => {
     const { todo } = useSelector(state => state);
     const [checkedCount, setCheckedCount] = useState(0);
     const dispatch = useDispatch()
@@ -40,17 +39,19 @@ const Todo = ({ setShow, handleShowSubTask }) => {
         }
     }
 
-    const handleDeleteTodo = (e, id, type) => {
+    const handleDelete = (e, id, type) => {
         e.stopPropagation();
-        dispatch(taskDelete({ id, type }))
+        handleDeleteTodo(e, id, type);
+        setDeleteShow(true)
     }
+
 
     useEffect(() => { }, [todo])
     return <Box className="todo">
         <span ><ListAltIcon />Todo({todo.length})</span>
         {
             todo?.length > 0 ? todo.map((item, index) => (<Box onClick={() => handleTodo(item.id)} key={index} className="task_box">
-                <DeleteIcon onClick={(e) => handleDeleteTodo(e, item.id, 'todo')} className="delete_icon" />
+                <DeleteIcon onClick={(e) => handleDelete(e, item.id, 'todo')} className="delete_icon" />
                 <h4>{cutString(item.title)}</h4>
                 <span>{countSubtaskChecked(item.subtask)} of {item.subtask.length} subtask</span>
             </Box>)) : (<Box className="task_box no_task">

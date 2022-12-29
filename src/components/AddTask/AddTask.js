@@ -5,6 +5,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 import './AddTask.css'
 import { useDispatch } from "react-redux";
 import { addTaskTodo, addTaskOngoing, addTaskCompleted } from "../../redux/reducer";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddTask = ({ handleClose, open }) => {
     const [subTask, setSubTask] = useState([]);
@@ -39,10 +41,14 @@ const AddTask = ({ handleClose, open }) => {
 
 
     const handleAddTask = () => {
-        if (!task.status && !task.title) {
-            handleClose(false)
+        if (!task.status || !task.title) {
+            // handleClose(false);
+            toast.warn("Please Fill The Field !", {
+                position: toast.POSITION.TOP_CENTER
+            });
             return;
         }
+
         if (task.status && task.status === 'todo') {
             dispatch(addTaskTodo({ ...task, subtask: subTask.length > 0 ? subTask : '' }))
         } else if (task.status && task.status === 'ongoing') {

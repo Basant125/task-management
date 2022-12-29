@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMove, taskDelete } from "../../../redux/reducer";
 import SyncIcon from '@mui/icons-material/Sync';
 import DeleteIcon from '@mui/icons-material/Delete';
-
 import '../Todo/Todo.css'
 
-const Ongoing = ({ setShow, handleShowSubTask }) => {
+const Ongoing = ({ setShow, handleShowSubTask, handleDeleteTodo, setDeleteShow }) => {
 
     const { ongoing } = useSelector(state => state)
     const dispatch = useDispatch()
@@ -41,10 +40,13 @@ const Ongoing = ({ setShow, handleShowSubTask }) => {
         }
     }
 
-    const handleDeleteTodo = (e, id, type) => {
+    const handleDelete = (e, id, type) => {
         e.stopPropagation();
-        dispatch(taskDelete({ id, type }))
+        handleDeleteTodo(e, id, type);
+        setDeleteShow(true)
     }
+
+
 
 
     useEffect(() => { }, [ongoing])
@@ -52,7 +54,7 @@ const Ongoing = ({ setShow, handleShowSubTask }) => {
         <span><SyncIcon /> Ongoing({ongoing.length})</span>
         {
             ongoing?.length > 0 ? ongoing.map((item, index) => (<Box onClick={() => handleTodo(item.id)} key={index} className="task_box">
-                <DeleteIcon onClick={(e) => handleDeleteTodo(e, item.id, 'ongoing')} className="delete_icon" />
+                <DeleteIcon onClick={(e) => handleDelete(e, item.id, 'ongoing')} className="delete_icon" />
                 <h4>{cutString(item.title)}</h4>
                 <span>{countSubtaskChecked(item.subtask)} of {item.subtask.length} subtask</span>
             </Box>)) : (<Box className="task_box no_task">

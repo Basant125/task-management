@@ -1,0 +1,40 @@
+.dialog_title {
+    text-align: center;
+    padding: 10px;
+}
+
+.dialog_title>img {
+    width: 80px;
+    height: 80px;
+}
+
+.dialog_content {
+    text-align: center;
+}
+
+.dialog_content_box {
+    padding: 20px;
+}
+
+.dialog_content h4 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 5px !important;
+}
+
+.delete_btn_dialog {
+    display: flex !important;
+    column-gap: 10px !important;
+    justify-content: center !important;
+}
+
+.delete_btn {
+    background-color: #3C6255 !important;
+    color: #EAE7B1 !important;
+}
+
+.delete_btn:hover {
+    background-color: #3C6255 !important;
+    opacity: 0.8 !important;
+}
